@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    {% include 'navbar.html' %}
+
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">My Chat Rooms</h1>
+
+        {% if rooms %}
+            <ul class="space-y-4">
+                {% for room in rooms %}
+                    <li class="bg-gray-50 p-4 rounded-lg shadow-sm hover:bg-gray-100 transition duration-200">
+                        <a href="{% url 'room' room.slug room.seller.username room.product.id %}" class="flex justify-between items-center">
+                            <div>
+                                <h2 class="text-lg font-semibold text-gray-700">{{ room.name }}</h2>
+                                <p class="text-sm text-gray-600">Product: {{ room.product.name }}</p>
+                                <p class="text-sm text-gray-600">
+                                    Chat with: {% if room.seller == user %}{{ room.customer.username }}{% else %}{{ room.seller.username }}{% endif %}
+                                </p>
+                            </div>
+                            <span class="text-blue-500 text-sm font-semibold hover:underline">Open Chat</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-gray-600 text-center">No chat rooms available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

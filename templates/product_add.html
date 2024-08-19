@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto max-w-lg">
+        <h1 class="text-4xl font-bold text-center mb-8">Add Product</h1>
+        <form method="post" enctype="multipart/form-data" class="bg-white p-6 rounded shadow">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id_name" class="block text-gray-700">Name</label>
+                <input type="text" name="name" id="id_name" class="border border-gray-300 p-2 w-full">
+            </div>
+            <div class="mb-4">
+                <label for="id_description" class="block text-gray-700">Description</label>
+                <textarea name="description" id="id_description" class="border border-gray-300 p-2 w-full"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="id_price" class="block text-gray-700">Price</label>
+                <input type="number" name="price" id="id_price" class="border border-gray-300 p-2 w-full">
+            </div>
+            <div class="mb-4">
+                <label for="id_image" class="block text-gray-700">Image</label>
+                <input type="file" name="image" id="id_image" class="border border-gray-300 p-2 w-full">
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+        </form>
+        <div class="text-center mt-4">
+            <a href="{% url 'product_list' %}" class="text-blue-500">Back to Product List</a>
+        </div>
+    </div>
+</body>
+</html>
